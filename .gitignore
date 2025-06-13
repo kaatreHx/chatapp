@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.db
+*.sqlite3
+db.sqlite3
+local_settings.py
+.venv
+.venv.*
+
+# VS Code
+.vscode/
+
+# Migrations
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.py[cod]
+
+# Static & Media (if generated at runtime)
+staticfiles/
+media/
+
+# Node (if using npm for frontend)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.coverage.*
+
+# Pytest
+.pytest_cache/
+
+# Others
+.DS_Store
+Thumbs.db

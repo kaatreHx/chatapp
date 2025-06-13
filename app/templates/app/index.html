@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tut-2</title>
+</head>
+<body>
+
+
+    <textarea name="chat-log" id="chat" cols="100" rows="20"></textarea><br>
+    <input type="text" id="input-message" size="100"><br>
+    <input type="button" value="send" id="send-btn">
+
+
+    <script>
+        var ws = new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+
+        ws.onopen = function(){
+            console.log('WebSocket connection open ..')
+            //{% comment %} ws.send("Hi I'm Kaatre!!") {% endcomment %}
+        }
+
+        ws.onmessage = function(event){
+            console.log('Message from server .. ', event.data)
+            const data = JSON.parse(event.data)
+            console.log('Parse  data .. ', data)
+            console.log('Actual  data .. ', data.msg)
+            document.getElementById('chat').value += (data.msg + '\n');
+
+        }
+
+        ws.onclose = function(event){
+            console.log('WebSocket connection closed ..')
+        }
+
+        document.getElementById('send-btn').onclick = function(event){
+            const messageInputDom = document.getElementById('input-message')
+            const message = messageInputDom.value
+            ws.send(JSON.stringify({
+                'msg': message
+            }))
+
+            messageInputDom.value = ''
+        } 
+    </script>
+</body>
+</html>
