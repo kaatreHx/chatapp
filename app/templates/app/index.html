@@ -7,14 +7,19 @@
 </head>
 <body>
 
+    <h1>Group Name: {{groupname}}</h1>
 
     <textarea name="chat-log" id="chat" cols="100" rows="20"></textarea><br>
     <input type="text" id="input-message" size="100"><br>
     <input type="button" value="send" id="send-btn">
 
+    {{groupname|json_script:"group-name"}}
 
     <script>
-        var ws = new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+
+        const groupName = JSON.parse(document.getElementById("group-name").textContent)
+        console.log(groupName)
+        var ws = new WebSocket(`ws://127.0.0.1:8000/ws/sc/${groupName}/`)
 
         ws.onopen = function(){
             console.log('WebSocket connection open ..')
